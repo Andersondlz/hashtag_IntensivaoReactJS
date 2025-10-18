@@ -1,15 +1,20 @@
 import Card from "./card.jsx";
-import imgBurguer from "../assets/pratos/burguer-picanha.jpeg"
+//import imgBurguer from "../assets/pratos/burguer-picanha.jpeg"
+import {pratosPrincipais,sobremesas,bebidas} from "../assets/cardapio.js"
 
-const Cards = () => {
+const Cards = ({numCategoriaSelecionada}) => {
+    const itensCategoria = [pratosPrincipais,sobremesas,bebidas];
+    const categoriaSelecionada = itensCategoria[numCategoriaSelecionada];
     return (
     <div className="cards">
-        <Card
-            titulo="Burgue de Picanha"
-            descricao="Burguer de Picanha Argus, Queijo Cheddar, Crisp de Cebola e Geléia de Bacon"
-            preco="R$ 44,90"
-            imagem={imgBurguer}
-        />
+        {categoriaSelecionada.map((item) => (
+            <Card
+                titulo={item.nome}
+                descricao={item.descricao}
+                preco={item.preco}
+                imagem={item.imagem}
+            />
+        ))}
     </div>
     );
 };
